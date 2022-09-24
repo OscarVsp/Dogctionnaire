@@ -27,7 +27,7 @@ def dogctionnaire():
                 new_sound.set_volume(sound_data.get("volume", 1.0))
                 sounds.append(new_sound)
                 print(
-                    f"Sound {sound_data.get('filename','not_found.mp3')} load at position {len(sounds)} (GPIO{pins[len(sounds)]})"
+                    f"Sound {sound_data.get('filename','not_found.mp3')} load at position {len(sounds)} (GPIO{pins[len(sounds)-1]})"
                 )
     except Exception as ex:
         print(f"Error loading data from .json: {ex}")
@@ -41,9 +41,10 @@ def dogctionnaire():
     print(f"Mapping buttons")
     for i, pin_num in enumerate(pins):
         new_button = Button(pin_num)
-        new_button.when_activated = sounds[i].play
+        new_button.when_activated = sounds[i].play()
 
     print("Ready !")
+    Sound(path + "start.mp3").play()
     pause()
 
 
