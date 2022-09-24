@@ -26,7 +26,9 @@ def dogctionnaire():
                 new_sound = Sound(path + sound_data.get("filename", "not_found.mp3"))
                 new_sound.set_volume(sound_data.get("volume", 1.0))
                 sounds.append(new_sound)
-                print(f"Sound {sound_data.get('filename','not_found.mp3')} load at position {len(sounds)}")
+                print(
+                    f"Sound {sound_data.get('filename','not_found.mp3')} load at position {len(sounds)} (GPIO{pins[i]})"
+                )
     except Exception as ex:
         print(f"Error loading data from .json: {ex}")
 
