@@ -17,13 +17,18 @@ def dogctionnaire():
     sounds: List[Sound] = []
 
     # Load data from data.json
-    with open("data.json", "r") as fp:
-        data: dict = load(fp)
-        music.set_volume(data.get("volume_global", 1.0))
-        for sound_data in data.get("sounds", []):
-            new_sound = Sound(path + sound_data.get("filename", "not_found.mp3"))
-            new_sound.set_volume(sound_data.get("volume", 1.0))
-            sounds.append(new_sound)
+    try:
+        print('Loading data from .json...')
+        with open("data.json", "r") as fp:
+            data: dict = load(fp)
+            music.set_volume(data.get("volume_global", 1.0))
+            for sound_data in data.get("sounds", []):
+                new_sound = Sound(path + sound_data.get("filename", "not_found.mp3"))
+                new_sound.set_volume(sound_data.get("volume", 1.0))
+                sounds.append(new_sound)
+                print(f"Sound {sound_data.get('filename','not_found.mp3')} load at position {len(sounds)}")
+    except Exception as ex:
+        print(f'Error loading data from .json: {ex}')
 
     # Add dummy sounds for remaining button
     for _ in range(len(pins) - len(sounds)):
@@ -31,12 +36,15 @@ def dogctionnaire():
         sounds.append(dummy_sound)
 
     # Map pins to sounds with buttons
+    print(f"Mapping buttons")
     for i, pin_num in enumerate(pins):
         new_button = Button(pin_num)
         new_button.when_activated = sounds[i].play
 
+    print("Ready !")
     pause()
 
 
 if __name__ == "__main__":
+    print('Starting...')
     dogctionnaire()
