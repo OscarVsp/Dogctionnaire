@@ -41,7 +41,7 @@ def dogctionnaire():
     print(f"Mapping buttons")
     for i, pin_num in enumerate(pins):
         new_button = Button(pin_num)
-        new_button.when_activated = sounds[i].play()
+        new_button.when_activated = sounds[i].play
 
     print("Ready !")
     Sound(path + "start.mp3").play()
