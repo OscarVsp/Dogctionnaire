@@ -8,7 +8,7 @@ from pygame.mixer import init
 from pygame.mixer import music
 from pygame.mixer import Sound
 
-pins: List[int] = [3, 5, 7, 8, 10, 11, 12, 13, 15, 16, 18, 19, 21, 22, 23, 24, 26, 29, 31, 32, 33, 35, 36, 37, 38, 40]
+pins: List[int] = [2, 3, 4, 17, 18, 27, 22, 23, 24, 10, 9, 25, 11, 8, 7, 5, 6, 12, 13, 19, 16, 26, 20, 21]
 path: str = "./sounds/"
 
 
@@ -18,7 +18,7 @@ def dogctionnaire():
 
     # Load data from data.json
     try:
-        print('Loading data from .json...')
+        print("Loading data from .json...")
         with open("data.json", "r") as fp:
             data: dict = load(fp)
             music.set_volume(data.get("volume_global", 1.0))
@@ -28,7 +28,7 @@ def dogctionnaire():
                 sounds.append(new_sound)
                 print(f"Sound {sound_data.get('filename','not_found.mp3')} load at position {len(sounds)}")
     except Exception as ex:
-        print(f'Error loading data from .json: {ex}')
+        print(f"Error loading data from .json: {ex}")
 
     # Add dummy sounds for remaining button
     for _ in range(len(pins) - len(sounds)):
@@ -46,5 +46,5 @@ def dogctionnaire():
 
 
 if __name__ == "__main__":
-    print('Starting...')
+    print("Starting...")
     dogctionnaire()
