@@ -12,10 +12,6 @@ pins: List[int] = [2, 3, 4, 17, 18, 27, 22, 23, 24, 10, 9, 25, 11, 8, 7, 5, 6, 1
 path: str = "./sounds/"
 
 
-def test():
-    print("button activated !")
-
-
 def dogctionnaire():
     init()
     sounds: List[Sound] = []
@@ -45,7 +41,8 @@ def dogctionnaire():
     print(f"Mapping buttons")
     for i, pin_num in enumerate(pins):
         new_button = Button(pin_num)
-        new_button.when_pressed = test
+        new_button.when_activated = sounds[i].play
+        sounds[i].play()
 
     print("Ready !")
     Sound(path + "start.mp3").play()
