@@ -1,0 +1,9 @@
+{
+    "Volume_global":1.0,
+    "sounds":[
+        {
+            "filename":"quatre_heure.pm3",
+            "volume":1.0
+        }
+    ]
+}

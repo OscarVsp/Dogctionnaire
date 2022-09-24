@@ -368,7 +368,6 @@ FodyWeavers.xsd
 *.sln
 .env
 .venv/*
-*.json
 .vscode/
 cogs/Dofus/almanax.db
 cogs/Basic/lore.db
